@@ -3,7 +3,7 @@ export default function Slider({ label, value }) {
       <div>
         <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
         <div className="relative flex items-center w-44 my-5">
-          <div className="bg-muted relative grow overflow-hidden rounded-full h-1.5 w-full">
+          <div className="bg-muted grow overflow-hidden rounded-full h-1.5 w-full">
             <div className="bg-primary absolute h-full left-0 right-0" />
           </div>
           <div className="absolute left-[calc(100%-8px)]">
