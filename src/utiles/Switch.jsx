@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Switch = () => {
+const Switch = ({ id }) => {
   return (
     <StyledWrapper>
-      <label className="switch-button" htmlFor="switch">
+      <label className="switch-button" htmlFor={id}>
         <div className="switch-outer">
-          <input id="switch" type="checkbox" />
+          <input id={id} type="checkbox" />
           <div className="button">
             <span className="button-toggle" />
             <span className="button-indicator" />
@@ -15,7 +15,8 @@ const Switch = () => {
       </label>
     </StyledWrapper>
   );
-}
+};
+
 
 const StyledWrapper = styled.div`
   .switch-button {
