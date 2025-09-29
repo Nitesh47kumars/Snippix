@@ -28,7 +28,7 @@ const SnippetCode = ({ width = 600 }) => {
       className="p-5 flex justify-center items-center"
       style={{ width: `${width}px` }}
     >
-      <div className="w-full border-2 rounded-xl shadow-2xl bg-[#0d0d0d] border-gray-600/40">
+      <div className="w-full border-2 rounded-xl shadow-2xl bg-black/70 backdrop-blur-2xl border-gray-600/40">
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-3">
           {/* Traffic light buttons */}
@@ -44,7 +44,7 @@ const SnippetCode = ({ width = 600 }) => {
               type="text"
               spellCheck={false}
               className="bg-transparent text-center text-gray-400 text-sm font-medium focus:outline-none"
-              defaultValue="Untitled"
+              placeholder="Untitled"
             />
           </div>
         </header>
