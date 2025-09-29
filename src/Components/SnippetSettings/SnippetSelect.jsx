@@ -6,7 +6,7 @@ export default function SnippetSelect({ label, value, iconColor }) {
           type="button"
           role="combobox"
           aria-expanded="false"
-          className="border-input text-muted-foreground flex items-center justify-between gap-2 rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50 w-40"
+          className="border-input text-muted-foreground flex items-center justify-between gap-2 rounded-md border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50 w-40"
         >
           <span className="flex gap-2 items-center">
             {iconColor && <div className={`h-4 w-4 rounded-full bg-gradient-to-br ${iconColor}`} />}
