@@ -9,9 +9,9 @@ export default function SnippetSettings() {
   const [padding, setPadding] = useState(64);
 
   return (
-    <div className='flex justify-center h-full pb-6'>
+    <div className='flex justify-center h-full pb-3'>
       <div className="rounded-xl border border-neutral-700 shadow-sm p-6 bg-neutral-900/90">
-        <div className="flex flex-wrap gap-4 sm:gap-6">
+        <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6">
             <SnippetSelect label="Theme" value="sublime" iconColor="from-rose-400 via-fuchsia-500 to-indigo-500" />
             <SnippetSelect label="Language" value="JavaScript/JSX" />
             <SnippetSelect label="Font" value="Roboto Mono" />
@@ -19,7 +19,7 @@ export default function SnippetSettings() {
             <Slider label="Padding" value={padding} onChange={setPadding} />
             <ToggleSwitch label="Background" checked />
             <ToggleSwitch label="DarkMode" checked />
-            <div className="w-px bg-neutral-800" />
+            <div className="min-h-[60px] w-px bg-neutral-800" />
             <ExportButton />
         </div>
       </div>
