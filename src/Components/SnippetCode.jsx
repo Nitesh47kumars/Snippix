@@ -25,7 +25,7 @@ const SnippetCode = () => {
     <div className="w-full px-2">
       <div className="w-full max-w-full sm:max-w-2xl mx-auto border-2 rounded-xl shadow-2xl bg-black/75 border-gray-600/40">
         {/* Header */}
-        <header className="grid grid-cols-6 gap-3 items-center px-4 py-3">
+        <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
           <div className="flex gap-1.5">
             <div className="rounded-full h-2 w-2 bg-red-500" />
             <div className="rounded-full h-2 w-2 bg-yellow-500" />
