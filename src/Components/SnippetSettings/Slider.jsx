@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
+import { MyContext } from "../../MyContext"; // Adjust path as needed
 
-export default function Slider({ label, value: initialValue = 64, min = 0, max = 128, onChange }) {
-  const [value, setValue] = useState(initialValue);
+export default function Slider({ label, min = 0, max = 128 }) {
+  const { value, setValue } = useContext(MyContext); // <--- From context
   const trackRef = useRef(null);
 
   const updateValue = (clientX) => {
@@ -9,8 +10,7 @@ export default function Slider({ label, value: initialValue = 64, min = 0, max =
     const rect = trackRef.current.getBoundingClientRect();
     const percent = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
     const newValue = Math.round(min + percent * (max - min));
-    setValue(newValue);
-    onChange?.(newValue);
+    setValue(newValue); // Update global padding
   };
 
   const handleMouseDown = (e) => {
@@ -25,10 +25,6 @@ export default function Slider({ label, value: initialValue = 64, min = 0, max =
     window.addEventListener("mouseup", handleMouseUp);
   };
 
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
   const percentFilled = ((value - min) / (max - min)) * 100;
 
   return (
@@ -36,7 +32,11 @@ export default function Slider({ label, value: initialValue = 64, min = 0, max =
       <label className="block mb-2 text-xs font-medium text-neutral-400">
         {label}: <span className="text-white font-semibold">{value}</span>
       </label>
-      <div className="relative w-44 h-5 flex items-center select-none" ref={trackRef} onMouseDown={handleMouseDown}>
+      <div
+        className="relative w-44 h-5 flex items-center select-none"
+        ref={trackRef}
+        onMouseDown={handleMouseDown}
+      >
         <div className="w-full h-1.5 bg-neutral-700 rounded-full relative overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 rounded-full"
