@@ -1,7 +1,7 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { MyContext } from "../../MyContext"; // Adjust path as needed
 
-export default function Slider({ label, min = 0, max = 128 }) {
+export default function Slider({ label, min = 0, max = 80 }) {
   const { value, setValue } = useContext(MyContext); // <--- From context
   const trackRef = useRef(null);
 
@@ -30,7 +30,7 @@ export default function Slider({ label, min = 0, max = 128 }) {
   return (
     <div>
       <label className="block mb-2 text-xs font-medium text-neutral-400">
-        {label}: <span className="text-white font-semibold">{value}</span>
+        {label}
       </label>
       <div
         className="relative w-44 h-5 flex items-center select-none"

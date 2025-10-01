@@ -8,7 +8,7 @@ const GradientWrapper = ({ children }) => {
 
   return (
     <div
-      className="max-w-[40rem] w-full bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 shadow-lg"
+      className="max-w-[50rem] bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 shadow-lg"
       style={{ padding }}
     >
       {children}
