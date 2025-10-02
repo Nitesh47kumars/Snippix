@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { MyContext } from "../MyContext";
 
 const SnippetCode = () => {
   const textareaRef = useRef(null);
   const [code, setCode] = useState("Hello, world");
-
+  
+  const {font} = useContext(MyContext);
+  
   const autoResize = () => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -47,7 +50,7 @@ const SnippetCode = () => {
           ref={textareaRef}
           value={code}
           onChange={handleChange}
-          className="resize-none outline-none px-4 pb-4 w-full text-sm bg-transparent text-white"
+          className={`resize-none outline-none px-4 pb-4 w-full ${text-[font]} bg-transparent text-white`}
           rows={1}
         />
       </div>

@@ -15,7 +15,7 @@ export default function SnippetSettings() {
             <SnippetTheme label="Theme" />
             <SnippetLanguage label="Language" />
             <SnippetFont label="Font" />
-            <FontSize label="Font Size" value={16} />
+            <FontSize label="Font Size" />
             <Slider label="Padding" />
             <ToggleSwitch label="Background" checked />
             <ToggleSwitch label="DarkMode" checked />
