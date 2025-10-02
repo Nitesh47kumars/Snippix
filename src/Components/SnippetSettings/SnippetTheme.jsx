@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export default function SnippetSelect({ label, iconColor }) {
+export default function SnippetSelect({ label }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -19,7 +19,6 @@ export default function SnippetSelect({ label, iconColor }) {
   const [value,setValue] = useState("Sublime");
   const [theme,setTheme] = useState(gradientTheme[0].theme);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -55,9 +54,8 @@ export default function SnippetSelect({ label, iconColor }) {
         >
           {gradientTheme.map((themes) => (
             <li
-              key={themes}
+              key={themes.name}
               onClick={() => {
-                console.log("Selected theme:", themes); // Replace with setter if needed
                 setOpen(false);
                 setValue(themes.name);
                 setTheme(themes.theme)

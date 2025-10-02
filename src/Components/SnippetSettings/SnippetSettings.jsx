@@ -1,8 +1,10 @@
-import SnippetSelect from './SnippetSelect';
+import SnippetTheme from './SnippetTheme';
 import FontSize from './FontSize';
 import Slider from './Slider';
 import ToggleSwitch from './ToggleSwitch';
 import ExportButton from './ExportButton';
+import SnippetLanguage from './SnippetLanguage';
+import SnippetFont from './SnippetFont';
 
 export default function SnippetSettings() {
 
@@ -10,9 +12,9 @@ export default function SnippetSettings() {
     <div className='flex justify-center h-full pb-3'>
       <div className="rounded-xl border border-neutral-700 shadow-sm p-6 bg-neutral-900/90">
         <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6">
-            <SnippetSelect label="Theme" />
-            <SnippetSelect label="Language" value="JavaScript/JSX" />
-            <SnippetSelect label="Font" value="Roboto Mono" />
+            <SnippetTheme label="Theme" />
+            <SnippetLanguage label="Language" />
+            <SnippetFont label="Font" />
             <FontSize label="Font Size" value={16} />
             <Slider label="Padding" />
             <ToggleSwitch label="Background" checked />
