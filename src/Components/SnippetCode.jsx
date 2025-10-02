@@ -5,7 +5,8 @@ const SnippetCode = () => {
   const textareaRef = useRef(null);
   const [code, setCode] = useState("Hello, world");
   
-  const {font} = useContext(MyContext);
+  const {state} = useContext(MyContext);
+  const font = `${state.font}px`;
   
   const autoResize = () => {
     const textarea = textareaRef.current;
@@ -50,7 +51,8 @@ const SnippetCode = () => {
           ref={textareaRef}
           value={code}
           onChange={handleChange}
-          className={`resize-none outline-none px-4 pb-4 w-full ${text-[font]} bg-transparent text-white`}
+          style={{fontSize:font}}
+          className="resize-none outline-none px-4 pb-4 w-full bg-transparent text-white"
           rows={1}
         />
       </div>

@@ -18,7 +18,7 @@ export default function SnippetSelect({ label }) {
   ];
   
   const [value,setValue] = useState("Sublime");
-  const {theme,setTheme} = useContext(MyContext);
+  const {state,dispatch} = useContext(MyContext);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -43,7 +43,7 @@ export default function SnippetSelect({ label }) {
         className="border-input text-muted-foreground flex items-center justify-between gap-2 rounded-md border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50 w-full"
       >
         <span className="flex gap-2 items-center">
-          <div className={`h-4 w-4 rounded-full bg-gradient-to-br ${theme}`} />
+          <div className={`h-4 w-4 rounded-full bg-gradient-to-br ${state.theme}`} />
           <span className="capitalize">{value}</span>
         </span>
         <ChevronDownIcon />
@@ -59,7 +59,7 @@ export default function SnippetSelect({ label }) {
               onClick={() => {
                 setOpen(false);
                 setValue(themes.name);
-                setTheme(themes.theme)
+                dispatch({type:"SET_THEME",payload:themes.theme})
               }}
               className="cursor-pointer px-3 py-2 hover:bg-neutral-700"
             >

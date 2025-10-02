@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { MyContext } from '../MyContext';
 
 const GradientWrapper = ({ children }) => {
-  const { value,theme} = useContext(MyContext);
+  const { state} = useContext(MyContext);
 
-  const padding = `${value}px`;
+  const padding = `${state.value}px`;
 
   return (
     <div
-      className={`max-w-[50rem] bg-gradient-to-br shadow-lg ${theme}`}
+      className={`max-w-[50rem] bg-gradient-to-br shadow-lg ${state.theme}`}
       style={{ padding }}
     >
       {children}

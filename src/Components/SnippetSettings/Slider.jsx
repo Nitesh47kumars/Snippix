@@ -1,8 +1,8 @@
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useRef } from "react";
 import { MyContext } from "../../MyContext"; // Adjust path as needed
 
 export default function Slider({ label, min = 0, max = 80 }) {
-  const { value, setValue } = useContext(MyContext); // <--- From context
+  const { state, dispatch } = useContext(MyContext); // useReducer context style
   const trackRef = useRef(null);
 
   const updateValue = (clientX) => {
@@ -10,7 +10,7 @@ export default function Slider({ label, min = 0, max = 80 }) {
     const rect = trackRef.current.getBoundingClientRect();
     const percent = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
     const newValue = Math.round(min + percent * (max - min));
-    setValue(newValue); // Update global padding
+    dispatch({ type: "SET_VALUE", payload: newValue }); // dispatch action to update value
   };
 
   const handleMouseDown = (e) => {
@@ -25,13 +25,11 @@ export default function Slider({ label, min = 0, max = 80 }) {
     window.addEventListener("mouseup", handleMouseUp);
   };
 
-  const percentFilled = ((value - min) / (max - min)) * 100;
+  const percentFilled = ((state.value - min) / (max - min)) * 100;
 
   return (
     <div>
-      <label className="block mb-2 text-xs font-medium text-neutral-400">
-        {label}
-      </label>
+      <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
       <div
         className="relative w-44 h-5 flex items-center select-none"
         ref={trackRef}
@@ -49,7 +47,7 @@ export default function Slider({ label, min = 0, max = 80 }) {
           tabIndex={0}
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={value}
+          aria-valuenow={state.value}
           className="absolute top-1/2 -translate-y-1/2"
           style={{ left: `calc(${percentFilled}% - 6px)` }}
         >

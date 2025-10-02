@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MyContext } from "../../MyContext";
 
 export default function FontSize({ label }) {
-  const { font, setFont } = useContext(MyContext);
+  const {state,dispatch} = useContext(MyContext);
 
   const handleChange = (e) => {
     let value = parseInt(e.target.value, 10);
@@ -12,7 +12,7 @@ export default function FontSize({ label }) {
     if (value > 40) value = 40;
     if (value < 0) value = 0;
 
-    setFont(value);
+    dispatch({type:"SET_FONT",payload:value});
   };
 
   return (
@@ -21,9 +21,9 @@ export default function FontSize({ label }) {
       <input
         type="number"
         max="40"
-        value={font}
+        value={state.font}
         onChange={handleChange}
-        className="w-20 h-10 rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300"
+        className={`w-20 h-10 ${state.font} rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300`}
       />
     </div>
   );
