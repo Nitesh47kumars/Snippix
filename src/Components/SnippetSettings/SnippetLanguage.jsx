@@ -47,7 +47,7 @@ export default function SnippetLanguage({ label }) {
       </button>
 
       {open && (
-        <ul className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-60">
+        <ul className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-100">
           {languages.map((lang) => (
             <li
               key={lang}
