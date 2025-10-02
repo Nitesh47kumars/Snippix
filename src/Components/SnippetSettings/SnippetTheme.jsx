@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { MyContext } from "../../MyContext";
 
 export default function SnippetSelect({ label }) {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function SnippetSelect({ label }) {
   ];
   
   const [value,setValue] = useState("Sublime");
-  const [theme,setTheme] = useState(gradientTheme[0].theme);
+  const {theme,setTheme} = useContext(MyContext);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
