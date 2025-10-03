@@ -5,7 +5,7 @@ const SnippetCode = () => {
   const textareaRef = useRef(null);
   const [code, setCode] = useState("Hello, world");
   
-  const {state} = useContext(MyContext);
+  const { state } = useContext(MyContext);
   const font = `${state.font}px`;
   
   const autoResize = () => {
@@ -15,10 +15,10 @@ const SnippetCode = () => {
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
-
+  
   useEffect(() => {
     autoResize();
-  }, []);
+  }, [state.font]);
 
   const handleChange = (e) => {
     setCode(e.target.value);
@@ -46,12 +46,11 @@ const SnippetCode = () => {
           </div>
         </header>
 
-        {/* Auto-growing textarea */}
         <textarea
           ref={textareaRef}
           value={code}
           onChange={handleChange}
-          style={{fontSize:font}}
+          style={{ fontSize: font }}
           className="resize-none outline-none px-4 pb-4 w-full bg-transparent text-white"
           rows={1}
         />
