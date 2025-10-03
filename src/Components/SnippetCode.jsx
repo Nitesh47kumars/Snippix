@@ -27,7 +27,7 @@ const SnippetCode = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-full sm:w-[36rem] mx-auto border-2 rounded-xl shadow-2xl bg-black/70 border-gray-600/40">
+      <div className={`w-full sm:w-[36rem] mx-auto border-2 rounded-xl shadow-2xl ${state.mode ==="dark" ? "bg-black/70 text-white" : "bg-white/50 text-black"}  border-gray-600/40`}>
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
           <div className="flex gap-1.5">
@@ -40,7 +40,7 @@ const SnippetCode = () => {
             <input
               type="text"
               spellCheck={false}
-              className="bg-transparent text-center text-gray-400 text-sm font-medium focus:outline-none"
+              className="bg-transparent text-center text-sm font-medium focus:outline-none"
               placeholder="Untitled"
             />
           </div>
@@ -51,7 +51,7 @@ const SnippetCode = () => {
           value={code}
           onChange={handleChange}
           style={{ fontSize: font }}
-          className="resize-none outline-none px-4 pb-4 w-full bg-transparent text-white"
+          className="resize-none outline-none px-4 pb-4 w-full bg-transparent"
           rows={1}
         />
       </div>

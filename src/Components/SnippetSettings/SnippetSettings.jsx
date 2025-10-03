@@ -5,8 +5,20 @@ import ToggleSwitch from './ToggleSwitch';
 import ExportButton from './ExportButton';
 import SnippetLanguage from './SnippetLanguage';
 import SnippetFont from './SnippetFont';
+import { useContext } from 'react';
+import { MyContext } from '../../MyContext';
 
 export default function SnippetSettings() {
+  const {state,dispatch} = useContext(MyContext);
+
+  const handleToggleMode = () =>{
+    dispatch(
+      {
+        type: "SET_MODE",
+        payload: state.mode=== "dark" ? "light" : "dark",
+      }
+    )
+  }
 
   return (
     <div className='flex justify-center h-full pb-3'>
@@ -18,7 +30,11 @@ export default function SnippetSettings() {
             <FontSize label="Font Size" />
             <Slider label="Padding" />
             <ToggleSwitch label="Background" checked />
-            <ToggleSwitch label="DarkMode" checked />
+            <ToggleSwitch 
+              label="DarkMode"
+              checked={state.mode==="dark"}
+              onChange={handleToggleMode}
+              />
             <div className="min-h-[60px] w-px bg-neutral-800" />
             <ExportButton />
         </div>

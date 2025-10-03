@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Switch = ({ id }) => {
+const Switch = ({ id , onChange}) => {
   return (
     <StyledWrapper>
       <label className="switch-button" htmlFor={id}>
         <div className="switch-outer">
-          <input id={id} type="checkbox" />
+          <input
+            id={id}
+            type="checkbox"
+            onChange={onChange}
+            />
           <div className="button">
             <span className="button-toggle" />
             <span className="button-indicator" />

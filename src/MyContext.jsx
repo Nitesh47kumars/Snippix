@@ -6,6 +6,7 @@ const initialState = {
   value: 64,
   font: 16,
   theme: "from-purple-600 via-pink-500 to-red-500",
+  mode: "dark"
 };
 
 function reducer(state, action) {
@@ -16,6 +17,8 @@ function reducer(state, action) {
       return { ...state, font: action.payload };
     case "SET_THEME":
       return { ...state, theme: action.payload };
+    case "SET_MODE":
+      return { ...state, mode: action.payload };
     default:
       return state;
   }
