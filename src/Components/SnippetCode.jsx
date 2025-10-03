@@ -31,18 +31,20 @@ const SnippetCode = () => {
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
           <div className="flex gap-1.5">
-            <div className="rounded-full h-2 w-2 bg-red-500" />
-            <div className="rounded-full h-2 w-2 bg-yellow-500" />
-            <div className="rounded-full h-2 w-2 bg-green-500" />
+            <div className="rounded-full h-2 w-2 shadow bg-red-500" />
+            <div className="rounded-full h-2 w-2 shadow bg-yellow-500" />
+            <div className="rounded-full h-2 w-2 shadow bg-green-500" />
           </div>
 
           <div className="col-span-4 flex justify-center">
-            <input
-              type="text"
-              spellCheck={false}
-              className="bg-transparent text-center text-sm font-medium focus:outline-none"
-              placeholder="Untitled"
-            />
+          <input
+            type="text"
+            spellCheck={false}
+            className={`bg-transparent text-center text-sm font-medium focus:outline-none 
+              ${state.mode === "dark" ? "text-white" : "placeholder-black/70"}`}
+            placeholder="Untitled"
+          />
+
           </div>
         </header>
 

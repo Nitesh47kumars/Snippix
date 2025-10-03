@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Switch = ({ id , onChange}) => {
+const Switch = ({ id , checked,onChange}) => {
   return (
     <StyledWrapper>
       <label className="switch-button" htmlFor={id}>
@@ -10,6 +10,7 @@ const Switch = ({ id , onChange}) => {
             id={id}
             type="checkbox"
             onChange={onChange}
+            checked={checked}
             />
           <div className="button">
             <span className="button-toggle" />
