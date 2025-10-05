@@ -3,10 +3,11 @@ import { createContext, useReducer } from "react";
 const MyContext = createContext();
 
 const initialState = {
-  value: 64,
+  value: 45,
   font: 16,
   theme: "from-purple-600 via-pink-500 to-red-500",
-  mode: "dark"
+  mode: "dark",
+  background: true
 };
 
 function reducer(state, action) {
