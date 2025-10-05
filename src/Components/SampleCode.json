@@ -1,0 +1,22 @@
+[
+    "console.log('App started');\nconst user = { name: 'Alice', age: 25 };\nif (user.age > 18) {\n  console.log('Adult user');\n}\nconsole.log('End of check');",
+    
+    "const sum = (a, b) => {\n  const result = a + b;\n  console.log('Sum:', result);\n  return result;\n};\nsum(5, 3);",
+    
+    "def greet(name):\n    message = f\"Hello, {name}\"\n    print(message)\n    return message\n\ngreet(\"Alice\")",
+    
+    "let count = 0;\nfor (let i = 0; i < 5; i++) {\n  count += i;\n}\nconsole.log('Total:', count);",
+    
+    "function sayHi(name) {\n  if (!name) {\n    name = 'Guest';\n  }\n  alert('Hi, ' + name + '!');\n}\nsayHi();",
+    
+    "if (user.isLoggedIn) {\n  showDashboard();\n  loadUserData(user.id);\n  notify('Welcome back!');\n} else {\n  redirectToLogin();\n}",
+    
+    "<div className=\"container\">\n  <h1>Welcome</h1>\n  <p>This is a React component</p>\n  <button onClick={handleClick}>Click</button>\n</div>",
+    
+    "print(\"Python is fun\")\nfor i in range(5):\n    print(f\"Number {i}\")\nprint(\"Done looping\")\nprint(\"Goodbye\")",
+    
+    "#!/bin/bash\necho \"Starting script...\"\nfor i in {1..3}\ndo\n  echo \"Iteration $i\"\ndone",
+    
+    "SELECT id, name, email\nFROM users\nWHERE active = 1\nORDER BY created_at DESC\nLIMIT 5;"
+  ]
+  

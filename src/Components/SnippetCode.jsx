@@ -1,49 +1,31 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MyContext } from "../MyContext";
+import SampleCode from "./SampleCode.json";
 
 const SnippetCode = () => {
   const textareaRef = useRef(null);
   const { state } = useContext(MyContext);
   const font = `${state.font}px`;
 
-  // ✅ Sample code snippets to choose from randomly
-  const codeSnippets = [
-    "console.log('Hello, world!');",
-    "const sum = (a, b) => a + b;",
-    "def greet(name):\n    return f\"Hello, {name}\"",
-    "let count = 0;\ncount++;",
-    "function sayHi() {\n  alert('Hi!');\n}",
-    "if (user.isLoggedIn) {\n  showDashboard();\n}",
-    "<div>Hello React</div>",
-    "print('Python is fun')",
-    "echo 'Hello from Bash!'",
-    "SELECT * FROM users WHERE active = 1;"
-  ];
-
-  // ✅ Initialize with random code snippet
   const [code, setCode] = useState("");
 
-  // ✅ Set random code snippet on initial render
   useEffect(() => {
-    const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+    const randomSnippet = SampleCode[Math.floor(Math.random() * SampleCode.length)];
     setCode(randomSnippet);
   }, []);
 
-  // ✅ Automatically resize textarea height to fit content
   const autoResize = () => {
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = "auto"; // reset height
-      textarea.style.height = `${textarea.scrollHeight}px`; // adjust to new content
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
 
-  // ✅ Resize when code or font changes
   useEffect(() => {
     autoResize();
   }, [code, state.font]);
 
-  // ✅ Handle user typing in the textarea
   const handleChange = (e) => {
     setCode(e.target.value);
   };
@@ -83,6 +65,7 @@ const SnippetCode = () => {
           style={{ fontSize: font }}
           className="resize-none outline-none px-4 pb-4 w-full bg-transparent"
           rows={1}
+          spellCheck={false}
         />
       </div>
     </div>
