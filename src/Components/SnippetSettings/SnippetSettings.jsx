@@ -29,12 +29,16 @@ export default function SnippetSettings() {
             <SnippetFont label="Font" />
             <FontSize label="Font Size" />
             <Slider label="Padding" />
-            <ToggleSwitch label="Background" checked />
+            <ToggleSwitch 
+              label="Background" 
+              checked={state.background} 
+              onChange={() => dispatch({ type: "SET_BACKGROUND" })}
+            />
             <ToggleSwitch 
               label="DarkMode"
               checked={state.mode==="dark"}
               onChange={handleToggleMode}
-              />
+            />
             <div className="min-h-[60px] w-px bg-neutral-800" />
             <ExportButton />
         </div>

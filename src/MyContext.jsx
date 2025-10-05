@@ -19,6 +19,8 @@ function reducer(state, action) {
       return { ...state, theme: action.payload };
     case "SET_MODE":
       return { ...state, mode: action.payload };
+    case "SET_BACKGROUND":
+      return { ...state, background: !state.background };
     default:
       return state;
   }
