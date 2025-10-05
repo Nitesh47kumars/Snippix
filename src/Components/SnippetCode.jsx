@@ -49,9 +49,10 @@ const SnippetCode = () => {
             <input
               type="text"
               spellCheck={false}
-              className={`bg-transparent text-center text-sm font-medium focus:outline-none ${
-                state.mode === "dark" ? "text-white" : "text-black/70"
-              }`}
+              className={`bg-transparent text-center text-sm font-medium focus:outline-none 
+                ${state.mode === "dark" 
+                  ? "text-white placeholder-white/60" 
+                  : "text-black/70 placeholder-black/50"}`}
               placeholder="Untitled"
             />
           </div>
