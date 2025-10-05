@@ -1,5 +1,11 @@
 @import 'tailwindcss';
-
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap');
 #root,body{
   color: white;
   background-color: #0d0d0d;
@@ -7,4 +13,11 @@
 
 @theme{
   --color-primary:#3F5EFB;
+  --font-fira: "Exo 2", sans-serif;
+  --font-jetbrains:"Alan Sans", sans-serif;
+  --font-source:"Quicksand", sans-serif;
+  --font-cascadia: "Dancing Script", cursive;
+  --font-monaco: "Share Tech", sans-serif;
+  --font-courier: "Josefin Sans", sans-serif;
+  --font-gravitas:  "Gravitas One", serif;
 }

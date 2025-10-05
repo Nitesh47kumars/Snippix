@@ -12,7 +12,7 @@ export default function FontSize({ label }) {
     if (value > 40) value = 40;
     if (value < 0) value = 0;
 
-    dispatch({type:"SET_FONT",payload:value});
+    dispatch({type:"SET_FONTSIZE",payload:value});
   };
 
   return (
@@ -21,9 +21,9 @@ export default function FontSize({ label }) {
       <input
         type="number"
         max="40"
-        value={state.font}
+        value={state.fontSize}
         onChange={handleChange}
-        className={`w-20 h-10 ${state.font} rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300`}
+        className={`w-20 h-10 ${state.fontSize} rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300`}
       />
     </div>
   );

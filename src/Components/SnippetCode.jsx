@@ -5,7 +5,7 @@ import SampleCode from "./SampleCode.json";
 const SnippetCode = () => {
   const textareaRef = useRef(null);
   const { state } = useContext(MyContext);
-  const font = `${state.font}px`;
+  const fontSize = `${state.fontSize}px`;
 
   const [code, setCode] = useState("");
 
@@ -24,7 +24,7 @@ const SnippetCode = () => {
 
   useEffect(() => {
     autoResize();
-  }, [code, state.font]);
+  }, [code, state.fontSize]);
 
   const handleChange = (e) => {
     setCode(e.target.value);
@@ -33,7 +33,7 @@ const SnippetCode = () => {
   return (
     <div className="flex justify-center">
       <div
-        className={`w-full sm:w-[36rem] mx-auto border-2 rounded-xl shadow-2xl ${
+        className={`w-full sm:w-[36rem] mx-auto border-2 rounded-xl shadow-2xl font-${state.font} ${
           state.mode === "dark" ? "bg-black/70 text-white" : "bg-white/50 text-black"
         } border-gray-600/40`}
       >
@@ -63,8 +63,8 @@ const SnippetCode = () => {
           ref={textareaRef}
           value={code}
           onChange={handleChange}
-          style={{ fontSize: font }}
-          className="resize-none outline-none px-4 pb-4 w-full bg-transparent"
+          style={{ fontSize: fontSize }}
+          className={`resize-none outline-none px-4 pb-4 w-full bg-transparent`}
           rows={1}
           spellCheck={false}
         />

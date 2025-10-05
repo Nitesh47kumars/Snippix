@@ -4,7 +4,8 @@ const MyContext = createContext();
 
 const initialState = {
   value: 45,
-  font: 16,
+  fontSize: 16,
+  font: "font-fira",
   theme: "from-purple-600 via-pink-500 to-red-500",
   mode: "dark",
   background: true
@@ -14,8 +15,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "SET_VALUE":
       return { ...state, value: action.payload };
+    case "SET_FONTSIZE":
+      return { ...state, fontSize: action.payload };
     case "SET_FONT":
-      return { ...state, font: action.payload };
+      return { ...state, font: action.payload };      
     case "SET_THEME":
       return { ...state, theme: action.payload };
     case "SET_MODE":
