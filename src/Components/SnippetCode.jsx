@@ -33,7 +33,7 @@ const SnippetCode = () => {
   return (
     <div className="flex justify-center">
       <div
-        className={`w-full sm:w-[36rem] mx-auto border-2 rounded-xl shadow-2xl ${state.font} ${
+        className={`w-full sm:min-w-[30rem] md:min-w-[36rem] lg:min-w-[40rem] mx-auto border-2 rounded-xl shadow-2xl ${state.font} ${
           state.mode === "dark" ? "bg-black/70 text-white" : "bg-white/50 text-black"
         } border-gray-600/40`}
       >
