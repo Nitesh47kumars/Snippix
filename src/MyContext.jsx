@@ -5,7 +5,7 @@ const MyContext = createContext();
 const initialState = {
   value: 45,
   fontSize: 16,
-  font: "font-fira",
+  font: "fira",
   theme: "from-purple-600 via-pink-500 to-red-500",
   mode: "dark",
   background: true
