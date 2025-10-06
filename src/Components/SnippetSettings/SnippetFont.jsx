@@ -8,13 +8,13 @@ export default function SnippetFont({ label }) {
   const { state, dispatch } = useContext(MyContext);
 
   const fonts = [
-    { name: "Fira Code", class: 'fira' },
-    { name: "JetBrains Mono", class: 'jetbrains' },
-    { name: "Source Code Pro", class: 'source' },
-    { name: "Cascadia Code", class: 'cascadia' },
-    { name: "Monaco", class: 'monaco' },
-    { name: "Courier New", class: 'courier' },
-    {name: "Gravitas-One", class: 'gravitas'}
+    { name: "Fira Code", class: 'font-fira' },
+    { name: "JetBrains Mono", class: 'font-jetbrains' },
+    { name: "Source Code Pro", class: 'font-source' },
+    { name: "Cascadia Code", class: 'font-cascadia' },
+    { name: "Monaco", class: 'font-monaco' },
+    { name: "Courier New", class: 'font-courier' },
+    { name: "Gravitas-One", class: 'font-gravitas'}
   ];
   
 
