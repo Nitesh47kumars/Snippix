@@ -15,11 +15,11 @@
 
 @theme{
   --color-primary: #3F5EFB;
-  --font-fira: "Exo 2", sans-serif;
-  --font-jetbrains: "Libre Baskerville", serif;
-  --font-source: "Quicksand", sans-serif;
-  --font-cascadia: "Dancing Script", cursive;
-  --font-monaco: "Share Tech", sans-serif;
-  --font-courier: "Montserrat", sans-serif;
+  --font-exo: "Exo 2", sans-serif;
+  --font-libre: "Libre Baskerville", serif;
+  --font-quicksand: "Quicksand", sans-serif;
+  --font-dancing: "Dancing Script", cursive;
+  --font-sharetech: "Share Tech", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
   --font-gravitas: "Gravitas One", serif;
 }
