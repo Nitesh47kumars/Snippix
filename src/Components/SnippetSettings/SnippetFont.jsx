@@ -14,7 +14,17 @@ export default function SnippetFont({ label }) {
     { name: "Dancing Script", class: 'font-dancing' },
     { name: "Share Tech", class: 'font-sharetech' },
     { name: "Montserrat", class: 'font-montserrat' },
-    { name: "Gravitas-One", class: 'font-gravitas'}
+    { name: "Gravitas-One", class: 'font-gravitas'},
+    { name: "Roboto Condensed", class: 'font-robot'},
+    { name: "Instrument Serif", class: 'font-instrument'},
+    { name: "Playwrite DE SAS", class: 'font-playwrite'},
+    { name: "Bebas Neue", class: 'font-bebas'},
+    { name: "Licorice", class: 'font-licorice'},
+    { name: "Playwrite US Modern", class: 'font-playwrite_us'},
+    { name: "Smooch Sans", class: 'font-smooch'},
+    { name: "Ole", class: 'font-ole'},
+    { name: "Space Grotesk", class: 'font-space'},
+    { name: "Pacifico", class: 'font-pacifico'},
   ];
   
 
@@ -31,7 +41,7 @@ export default function SnippetFont({ label }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative w-40">
+    <div ref={ref} className="relative min-w-40">
       <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
 
       <button
@@ -46,7 +56,7 @@ export default function SnippetFont({ label }) {
       </button>
 
       {open && (
-        <ul className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-80">
+        <ul className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-140">
           {fonts.map((font) => (
             <li
               key={font.name}
@@ -54,7 +64,7 @@ export default function SnippetFont({ label }) {
                 dispatch({ type: "SET_FONT", payload: font.class });
                 setOpen(false);
               }}
-              className={`cursor-pointer px-3 py-2 hover:bg-neutral-700 ${font.class}`}
+              className={`cursor-pointer px-3 py-1 hover:bg-neutral-700 ${font.class}`}
             >
               {font.name}
             </li>
