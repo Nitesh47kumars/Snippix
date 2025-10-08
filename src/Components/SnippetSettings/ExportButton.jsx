@@ -1,7 +1,7 @@
 export default function ExportButton() {
     return (
       <button
-        className="inline-flex items-center gap-2 rounded-md text-sm font-medium bg-primary text-primary-foreground shadow-xs hover:bg-primary/70 duration-200 h-9 px-4 py-2"
+        className="max-lg:w-full justify-center inline-flex items-center gap-2 rounded-md text-sm font-medium bg-primary text-primary-foreground shadow-xs hover:bg-primary/70 duration-200 h-9 px-4 py-2"
         type="button"
       >
         <ShareIcon />
