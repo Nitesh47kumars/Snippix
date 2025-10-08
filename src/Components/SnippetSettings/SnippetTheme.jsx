@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { MyContext } from "../../MyContext";
+import {motion} from 'framer-motion';
 
 export default function SnippetSelect({ label }) {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,10 @@ export default function SnippetSelect({ label }) {
       </button>
 
       {open && (
-        <ul
+        <motion.ul
+          initial={{y:10,opacity:0}}
+          animate={{y:0,opacity:1}}
+          transition={{duration:0.2,ease:'easeInOut'}}
           className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-visible"
         >
           {gradientTheme.map((themes) => (
@@ -69,7 +73,7 @@ export default function SnippetSelect({ label }) {
               </span>
             </li>
           ))}
-        </ul>
+        </motion.ul>
       )}
 
     </div>

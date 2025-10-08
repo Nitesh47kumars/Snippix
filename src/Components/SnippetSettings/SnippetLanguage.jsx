@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import {motion} from 'framer-motion';
 
 export default function SnippetLanguage({ label }) {
   const [open, setOpen] = useState(false);
@@ -47,7 +48,11 @@ export default function SnippetLanguage({ label }) {
       </button>
 
       {open && (
-        <ul className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-100">
+        <motion.ul
+        initial={{y:10,opacity:0}}
+        animate={{y:0,opacity:1}}
+        transition={{duration:0.2,ease:'easeInOut'}}
+        className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-100">
           {languages.map((lang) => (
             <li
               key={lang}
@@ -60,7 +65,7 @@ export default function SnippetLanguage({ label }) {
               {lang}
             </li>
           ))}
-        </ul>
+        </motion.ul>
       )}
     </div>
   );
