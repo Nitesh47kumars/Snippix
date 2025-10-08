@@ -10,7 +10,7 @@ export default function SnippetSettings() {
 
   return (
     <div className='flex justify-center h-full pb-3 m-4'>
-      <div className="rounded-xl border border-neutral-700 shadow-sm p-6 bg-neutral-900/90">
+      <div className="rounded-xl border border-neutral-800 shadow-sm p-6 bg-neutral-900/90">
         <div className="flex items-center justify-center flex-wrap gap-4 sm:gap-6">
           <div className='max-xl:w-full flex max-sm:flex-col max-sm:gap-4 gap-7 max-lg:justify-between'>
             <SnippetTheme label="Theme" />
