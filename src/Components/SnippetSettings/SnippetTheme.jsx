@@ -33,7 +33,7 @@ export default function SnippetSelect({ label }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative w-40">
+    <div ref={ref} className="relative w-40 max-lg:w-full">
       <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
       
       <button

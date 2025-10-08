@@ -42,7 +42,7 @@ export default function SnippetFont({ label }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative min-w-40">
+    <div ref={ref} className="relative min-w-40 max-lg:w-full">
       <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
 
       <button
