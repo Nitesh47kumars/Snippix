@@ -28,7 +28,7 @@ export default function Slider({ label, min = 0, max = 80 }) {
   const percentFilled = ((state.value - min) / (max - min)) * 100;
 
   return (
-    <div className="max-lg:w-full w-44">
+    <div className="max-xl:w-full w-44">
       <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
       <div
         className="relative w-full h-5 flex items-center select-none"
