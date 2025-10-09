@@ -8,7 +8,8 @@ const initialState = {
   font: "fira",
   theme: "from-purple-600 via-pink-500 to-red-500",
   mode: "dark",
-  background: true
+  background: true,
+  language: "javascript",
 };
 
 function reducer(state, action) {
@@ -25,6 +26,8 @@ function reducer(state, action) {
       return { ...state, mode: action.payload };
     case "SET_BACKGROUND":
       return { ...state, background: !state.background };
+    case "SET_LANGUAGE":
+      return {...state, language: action.payload};
     default:
       return state;
   }

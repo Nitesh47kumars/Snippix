@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import {motion} from 'framer-motion';
+import { MyContext } from "../../MyContext";
 
 export default function SnippetLanguage({ label }) {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function SnippetLanguage({ label }) {
     "Kotlin",
   ];
 
-  const [value, setValue] = useState(languages[0]);
+  const {state,dispatch} = useContext(MyContext);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -43,7 +44,7 @@ export default function SnippetLanguage({ label }) {
         onClick={() => setOpen((prev) => !prev)}
         className="border-input text-muted-foreground flex items-center justify-between gap-2 rounded-md border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50 w-full"
       >
-        <span className="capitalize">{value}</span>
+        <span className="capitalize">{state.language}</span>
         <ChevronDownIcon />
       </button>
 
@@ -58,7 +59,7 @@ export default function SnippetLanguage({ label }) {
               key={lang}
               onClick={() => {
                 setOpen(false);
-                setValue(lang);
+                dispatch({type:"SET_LANGUAGE",payload: lang})
               }}
               className="cursor-pointer px-3 py-2 hover:bg-neutral-700 capitalize"
             >
