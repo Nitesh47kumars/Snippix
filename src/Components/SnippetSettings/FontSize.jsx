@@ -1,18 +1,40 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../MyContext";
 
 export default function FontSize({ label }) {
-  const {state,dispatch} = useContext(MyContext);
+  const { state, dispatch } = useContext(MyContext);
+  const [tempValue, setTempValue] = useState(state.fontSize.toString());
 
   const handleChange = (e) => {
-    let value = parseInt(e.target.value, 10);
+    let inputValue = e.target.value;
+
+    if (inputValue === "") {
+      setTempValue("");
+      return;
+    }
+
+    if (inputValue.length > 2) return;
+
+    let value = parseInt(inputValue, 10);
 
     if (isNaN(value)) return;
 
     if (value > 40) value = 40;
     if (value < 0) value = 0;
 
-    dispatch({type:"SET_FONTSIZE",payload:value});
+    setTempValue(value.toString());
+    dispatch({ type: "SET_FONTSIZE", payload: value });
+  };
+
+ useEffect(() => {
+    setTempValue(state.fontSize.toString());
+  }, [state.fontSize]);
+
+  const handleBlur = () => {
+    if (tempValue === "") {
+      setTempValue("0");
+      dispatch({ type: "SET_FONTSIZE", payload: 0 });
+    }
   };
 
   return (
@@ -21,9 +43,10 @@ export default function FontSize({ label }) {
       <input
         type="number"
         max="40"
-        value={state.fontSize}
+        value={tempValue}
         onChange={handleChange}
-        className={`max-sm:w-full w-20 h-10 ${state.fontSize} rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300`}
+        onBlur={handleBlur}
+        className="max-sm:w-full w-20 h-10 rounded-lg border border-neutral-700 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm outline-none transition-all duration-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300"
       />
     </div>
   );
