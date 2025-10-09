@@ -10,6 +10,6 @@ export default defineConfig({
     server:{
       host:'0.0.0.0',
       post: '5173',
-      allowedHosts: ['all', '12aa959dc39b.ngrok-free.app'],
+      allowedHosts: ['all', '38540632f8e8.ngrok-free.app'],
     }
 })

@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { MyContext } from "../../MyContext"; // Adjust path as needed
 
 export default function Slider({ label, min = 0, max = 80 }) {
-  const { state, dispatch } = useContext(MyContext); // useReducer context style
+  const { state, dispatch } = useContext(MyContext);
   const trackRef = useRef(null);
 
   const updateValue = (clientX) => {
@@ -10,30 +10,46 @@ export default function Slider({ label, min = 0, max = 80 }) {
     const rect = trackRef.current.getBoundingClientRect();
     const percent = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
     const newValue = Math.round(min + percent * (max - min));
-    dispatch({ type: "SET_VALUE", payload: newValue }); // dispatch action to update value
+    dispatch({ type: "SET_VALUE", payload: newValue });
+  };
+
+  const handlePointerDown = (clientX, moveEvent, upEvent) => {
+    updateValue(clientX);
+    const handleMove = (e) => {
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      updateValue(x);
+    };
+    const handleUp = () => {
+      window.removeEventListener(moveEvent, handleMove);
+      window.removeEventListener(upEvent, handleUp);
+    };
+    window.addEventListener(moveEvent, handleMove);
+    window.addEventListener(upEvent, handleUp);
   };
 
   const handleMouseDown = (e) => {
     e.preventDefault();
-    updateValue(e.clientX);
-    const handleMouseMove = (e) => updateValue(e.clientX);
-    const handleMouseUp = () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
+    handlePointerDown(e.clientX, "mousemove", "mouseup");
+  };
+
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    handlePointerDown(e.touches[0].clientX, "touchmove", "touchend");
   };
 
   const percentFilled = ((state.value - min) / (max - min)) * 100;
 
   return (
     <div className="max-xl:w-full w-44">
-      <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
+      <label className="block mb-2 text-xs font-medium text-neutral-400">
+        {label}
+      </label>
+
       <div
         className="relative w-full h-5 flex items-center select-none"
         ref={trackRef}
         onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
       >
         <div className="w-full h-1.5 bg-neutral-700 rounded-full relative overflow-hidden">
           <div
