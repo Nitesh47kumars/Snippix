@@ -23,7 +23,6 @@ export default function SnippetSettings() {
             <Slider label="Padding" />
             <ToggleSwitchs/>
           </div>
-            <div className="max-xl:hidden min-h-[60px] w-px bg-neutral-800" />
             <ExportButton />
         </div>
       </div>
