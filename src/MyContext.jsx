@@ -6,7 +6,7 @@ const initialState = {
   value: 45,
   fontSize: 16,
   font: "fira",
-  theme: "from-purple-600 via-pink-500 to-red-500",
+  theme: "linear-gradient(to bottom right, #fb923c, #ec4899, #ef4444)",
   mode: "dark",
   background: true,
   language: "javascript",

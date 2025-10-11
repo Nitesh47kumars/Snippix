@@ -1,24 +1,23 @@
-import React, { useContext, forwardRef } from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../MyContext';
 
-// ✅ forwardRef lets this component accept a ref from the parent
-const GradientWrapper = forwardRef(({ children }, ref) => {
+const GradientWrapper = ({ children }) => {
   const { state } = useContext(MyContext);
   const padding = `${state.value}px`;
 
-  const backgroundClass = state.background
-    ? `bg-gradient-to-br ${state.theme}`
-    : "bg-transparent";
+  // ✅ use inline CSS gradient instead of Tailwind classes
+  const backgroundStyle = state.background
+    ? { backgroundImage: state.theme }
+    : { background: "transparent" };
 
   return (
     <div
-      ref={ref}  // ✅ Now this ref comes from parent (like SnippetPreview)
-      className={`max-w-[50rem] shadow-lg ${backgroundClass}`}
-      style={{ padding }}
+      className="max-w-[50rem] shadow-lg rounded-2xl overflow-hidden"
+      style={{ padding, ...backgroundStyle, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}
     >
       {children}
     </div>
   );
-});
+};
 
 export default GradientWrapper;

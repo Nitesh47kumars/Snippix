@@ -1,26 +1,51 @@
+"use client";
 import { useState, useRef, useEffect, useContext } from "react";
 import { MyContext } from "../../MyContext";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
-export default function SnippetSelect({ label }) {
+export default function SnippetTheme({ label }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
+  const [value, setValue] = useState("Sublime");
+  const { state, dispatch } = useContext(MyContext);
 
-  
+  // ✅ Safe CSS gradients (no Tailwind color utilities)
   const gradientTheme = [
-    { name: "Sublime", theme: "from-orange-400 via-pink-500 to-red-500" },
-    { name: "Dracula", theme: "from-purple-700 via-purple-800 to-indigo-900" },
-    { name: "Monokai", theme: "from-yellow-400 via-pink-500 to-purple-500" },
-    { name: "GitHub Dark", theme: "from-gray-700 via-gray-800 to-gray-900" },
-    { name: "Night Owl", theme: "from-sky-500 via-indigo-600 to-blue-900" },
-    { name: "Nord", theme: "from-sky-300 via-cyan-400 to-emerald-400" },
-    { name: "One Dark", theme: "from-slate-700 via-slate-800 to-slate-900" },
-    { name: "Solarized Light", theme: "from-yellow-300 via-amber-200 to-lime-200" },
+    {
+      name: "Sublime",
+      theme: "linear-gradient(to bottom right, #fb923c, #ec4899, #ef4444)",
+    },
+    {
+      name: "Dracula",
+      theme: "linear-gradient(to bottom right, #7e22ce, #6b21a8, #312e81)",
+    },
+    {
+      name: "Monokai",
+      theme: "linear-gradient(to bottom right, #facc15, #ec4899, #a855f7)",
+    },
+    {
+      name: "GitHub Dark",
+      theme: "linear-gradient(to bottom right, #374151, #1f2937, #111827)",
+    },
+    {
+      name: "Night Owl",
+      theme: "linear-gradient(to bottom right, #0ea5e9, #4f46e5, #1e3a8a)",
+    },
+    {
+      name: "Nord",
+      theme: "linear-gradient(to bottom right, #7dd3fc, #22d3ee, #34d399)",
+    },
+    {
+      name: "One Dark",
+      theme: "linear-gradient(to bottom right, #334155, #1e293b, #0f172a)",
+    },
+    {
+      name: "Solarized Light",
+      theme: "linear-gradient(to bottom right, #fde047, #fef08a, #d9f99d)",
+    },
   ];
-  
-  const [value,setValue] = useState("Sublime");
-  const {state,dispatch} = useContext(MyContext);
 
+  // ✅ Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -34,8 +59,10 @@ export default function SnippetSelect({ label }) {
 
   return (
     <div ref={ref} className="relative w-40 max-xl:w-full">
-      <label className="block mb-2 text-xs font-medium text-neutral-400">{label}</label>
-      
+      <label className="block mb-2 text-xs font-medium text-neutral-400">
+        {label}
+      </label>
+
       <button
         type="button"
         role="combobox"
@@ -44,7 +71,11 @@ export default function SnippetSelect({ label }) {
         className="border-input text-muted-foreground flex items-center justify-between gap-2 rounded-md border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 px-3 py-2 text-sm whitespace-nowrap shadow-xs outline-none focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50 w-full"
       >
         <span className="flex gap-2 items-center">
-          <div className={`h-4 w-4 rounded-full bg-gradient-to-br ${state.theme}`} />
+          {/* ✅ Using inline gradient instead of Tailwind classes */}
+          <div
+            className="h-4 w-4 rounded-full"
+            style={{ backgroundImage: state.theme }}
+          />
           <span className="capitalize">{value}</span>
         </span>
         <ChevronDownIcon />
@@ -52,9 +83,9 @@ export default function SnippetSelect({ label }) {
 
       {open && (
         <motion.ul
-          initial={{y:10,opacity:0}}
-          animate={{y:0,opacity:1}}
-          transition={{duration:0.2,ease:'easeInOut'}}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
           className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-visible"
         >
           {gradientTheme.map((themes) => (
@@ -63,19 +94,21 @@ export default function SnippetSelect({ label }) {
               onClick={() => {
                 setOpen(false);
                 setValue(themes.name);
-                dispatch({type:"SET_THEME",payload:themes.theme})
+                dispatch({ type: "SET_THEME", payload: themes.theme });
               }}
               className="cursor-pointer px-3 py-2 hover:bg-neutral-700"
             >
               <span className="flex gap-2 items-center">
-                <div className={`h-4 w-4 rounded-full bg-gradient-to-br ${themes.theme}`} />
+                <div
+                  className="h-4 w-4 rounded-full"
+                  style={{ backgroundImage: themes.theme }}
+                />
                 <span className="capitalize">{themes.name}</span>
               </span>
             </li>
           ))}
         </motion.ul>
       )}
-
     </div>
   );
 }

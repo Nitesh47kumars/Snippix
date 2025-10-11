@@ -17,34 +17,68 @@ export default function ExportButton({ targetRef }) {
   }, []);
 
   const handleExport = async (format = "png", action = "download") => {
-    const target = targetRef?.current;
-    if (!target) return alert("❌ No target element found to export!");
-
-    const canvas = await html2canvas(target, { backgroundColor: null });
-    const dataURL = canvas.toDataURL(`image/${format}`);
-
-    if (action === "download") {
-      const a = document.createElement("a");
-      a.href = dataURL;
-      a.download = `export.${format}`;
-      a.click();
+    try {
+      console.log("🟢 handleExport called", { format, action });
+      console.log("targetRef:", targetRef);
+      console.log("targetRef.current:", targetRef?.current);
+  
+      const target = targetRef?.current;
+      if (!target) {
+        alert("❌ No target element found to export!");
+        return;
+      }
+  
+      console.log("📸 Starting html2canvas...");
+      const canvas = await html2canvas(target, {
+        backgroundColor: null,
+        useCORS: true,
+        logging: true,
+        scale: 2, // higher quality
+      });
+  
+      if (!canvas) {
+        console.error("❌ html2canvas returned null");
+        alert("❌ Failed to create canvas!");
+        return;
+      }
+  
+      console.log("✅ Canvas captured:", canvas);
+      const dataURL = canvas.toDataURL(`image/${format}`);
+      console.log("🖼️ Data URL created:", dataURL.slice(0, 60) + "...");
+  
+      if (action === "download") {
+        const a = document.createElement("a");
+        a.href = dataURL;
+        a.download = `export.${format}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        console.log("💾 Download triggered!");
+        alert("✅ Image downloaded!");
+      }
+  
+      if (action === "copy") {
+        const blob = await (await fetch(dataURL)).blob();
+        await navigator.clipboard.write([
+          new ClipboardItem({ [`image/${format}`]: blob }),
+        ]);
+        console.log("📋 Image copied to clipboard");
+        alert("✅ Image copied to clipboard!");
+      }
+  
+      if (action === "link") {
+        await navigator.clipboard.writeText(window.location.href);
+        console.log("🔗 Link copied to clipboard");
+        alert("🔗 Link copied to clipboard!");
+      }
+  
+      setOpen(false);
+    } catch (error) {
+      console.error("🔥 Export failed:", error);
+      alert("❌ Export failed. See console for details.");
     }
-
-    if (action === "copy") {
-      const blob = await (await fetch(dataURL)).blob();
-      await navigator.clipboard.write([
-        new ClipboardItem({ [`image/${format}`]: blob }),
-      ]);
-      alert("✅ Image copied to clipboard!");
-    }
-
-    if (action === "link") {
-      await navigator.clipboard.writeText(window.location.href);
-      alert("🔗 Link copied to clipboard!");
-    }
-
-    setOpen(false);
   };
+  
 
   return (
     <div ref={ref} className="relative inline-block">
