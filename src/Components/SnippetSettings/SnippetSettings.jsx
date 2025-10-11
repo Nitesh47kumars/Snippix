@@ -5,8 +5,11 @@ import ToggleSwitchs from './ToggleSwitchs'
 import ExportButton from './ExportButton';
 import SnippetLanguage from './SnippetLanguage';
 import SnippetFont from './SnippetFont';
+import { useContext } from 'react';
+import { MyContext } from '../../MyContext';
 
 export default function SnippetSettings() {
+  const exportRef = useContext(MyContext);
 
   return (
     <div className='flex justify-center h-full pb-3 m-4'>
@@ -23,7 +26,7 @@ export default function SnippetSettings() {
             <Slider label="Padding" />
             <ToggleSwitchs/>
           </div>
-            <ExportButton />
+            <ExportButton targetRef={exportRef} />
         </div>
       </div>
     </div>

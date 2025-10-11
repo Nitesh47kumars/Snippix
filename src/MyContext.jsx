@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useRef } from "react";
 
 const MyContext = createContext();
 
@@ -35,9 +35,10 @@ function reducer(state, action) {
 
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const exportRef = useRef(null);
 
   return (
-    <MyContext.Provider value={{ state, dispatch }}>
+    <MyContext.Provider value={{ state, dispatch, exportRef}}>
       {children}
     </MyContext.Provider>
   );

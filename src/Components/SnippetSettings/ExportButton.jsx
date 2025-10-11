@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import { motion } from "framer-motion";
 
-export default function ExportButton() {
+export default function ExportButton({ targetRef }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -17,8 +17,8 @@ export default function ExportButton() {
   }, []);
 
   const handleExport = async (format = "png", action = "download") => {
-    const target = document.getElementById("content-to-export");
-    if (!target) return alert("❌ No element with id='content-to-export' found");
+    const target = targetRef?.current;
+    if (!target) return alert("❌ No target element found to export!");
 
     const canvas = await html2canvas(target, { backgroundColor: null });
     const dataURL = canvas.toDataURL(`image/${format}`);
@@ -48,7 +48,6 @@ export default function ExportButton() {
 
   return (
     <div ref={ref} className="relative inline-block">
-      {/* Main Button */}
       <button
         onClick={() => setOpen((prev) => !prev)}
         type="button"
@@ -59,7 +58,6 @@ export default function ExportButton() {
         <ChevronDownIcon />
       </button>
 
-      {/* Dropdown Menu */}
       {open && (
         <motion.ul
           initial={{ y: 10, opacity: 0 }}
@@ -79,7 +77,7 @@ export default function ExportButton() {
           >
             🔗 <span>Copy Link</span>
           </li>
-          
+
           <div className="max-xl:hidden h-px w-full bg-neutral-800" />
 
           <li
