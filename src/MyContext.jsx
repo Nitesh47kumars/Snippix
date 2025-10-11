@@ -6,7 +6,7 @@ const initialState = {
   value: 45,
   fontSize: 16,
   font: "fira",
-  theme: "linear-gradient(to bottom right, #fb923c, #ec4899, #ef4444)",
+  // theme: "linear-gradient(to bottom right, #fb923c, #ec4899, #ef4444)",
   mode: "dark",
   background: true,
   language: "javascript",
@@ -20,8 +20,8 @@ function reducer(state, action) {
       return { ...state, fontSize: action.payload };
     case "SET_FONT":
       return { ...state, font: action.payload };      
-    case "SET_THEME":
-      return { ...state, theme: action.payload };
+    // case "SET_THEME":
+    //   return { ...state, theme: action.payload };
     case "SET_MODE":
       return { ...state, mode: action.payload };
     case "SET_BACKGROUND":
