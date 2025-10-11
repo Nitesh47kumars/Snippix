@@ -9,7 +9,6 @@ export default function SnippetTheme({ label }) {
   const [value, setValue] = useState("Sublime");
   const { state, dispatch } = useContext(MyContext);
 
-  // ✅ Safe CSS gradients (no Tailwind color utilities)
   const gradientTheme = [
     {
       name: "Sublime",
@@ -45,7 +44,6 @@ export default function SnippetTheme({ label }) {
     },
   ];
 
-  // ✅ Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {

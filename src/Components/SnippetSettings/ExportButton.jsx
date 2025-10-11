@@ -81,7 +81,7 @@ export default function ExportButton({ targetRef }) {
   
 
   return (
-    <div ref={ref} className="relative inline-block">
+    <div ref={ref} className="max-sm:w-full relative inline-block">
       <button
         onClick={() => setOpen((prev) => !prev)}
         type="button"
@@ -97,7 +97,7 @@ export default function ExportButton({ targetRef }) {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="absolute bottom-full mb-1 right-0 z-20 w-48 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-hidden"
+          className="max-sm:w-full absolute bottom-full mb-1 right-0 z-20 w-48 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-hidden"
         >
           <li
             onClick={() => handleExport("png", "copy")}
