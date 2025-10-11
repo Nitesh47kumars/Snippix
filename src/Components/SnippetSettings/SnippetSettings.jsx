@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { MyContext } from '../../MyContext';
 
 export default function SnippetSettings() {
-  const exportRef = useContext(MyContext);
+  const {exportRef} = useContext(MyContext);
 
   return (
     <div className='flex justify-center h-full pb-3 m-4'>
