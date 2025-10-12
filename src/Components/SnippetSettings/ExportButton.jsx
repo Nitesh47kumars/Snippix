@@ -16,6 +16,20 @@ export default function ExportButton({ targetRef }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Replace any CSS style values containing 'oklab(' or 'oklch(' with fallback color
+  const replaceUnsupportedColors = (element) => {
+    const allElements = element.querySelectorAll("*");
+    [...allElements, element].forEach((el) => {
+      const style = getComputedStyle(el);
+      for (const prop of style) {
+        const value = style.getPropertyValue(prop);
+        if (value.includes("oklab(") || value.includes("oklch(")) {
+          el.style.setProperty(prop, "#000000");
+        }
+      }
+    });
+  };
+
   const handleExport = async (format = "png", action = "download") => {
     try {
       const target = targetRef?.current;
@@ -24,15 +38,16 @@ export default function ExportButton({ targetRef }) {
         return;
       }
 
+      replaceUnsupportedColors(target);
+
       const prevBg = target.style.backgroundColor;
-      target.style.backgroundColor =
-        state.mode === "dark" ? "#0d0d0d" : "#ffffff";
+      target.style.backgroundColor = state.mode === "dark" ? "#0d0d0d" : "#ffffff";
 
       const canvas = await html2canvas(target, {
-        backgroundColor: null,
         useCORS: true,
         scale: 2,
-        foreignObjectRendering: true,
+        backgroundColor: null,
+        foreignObjectRendering: false,
       });
 
       target.style.backgroundColor = prevBg;
@@ -61,7 +76,7 @@ export default function ExportButton({ targetRef }) {
         alert("Image data URL copied to clipboard!");
       }
     } catch (err) {
-      console.error("🔥 Export failed:", err);
+      console.error("Export failed:", err);
     }
   };
 
