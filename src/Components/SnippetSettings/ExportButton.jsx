@@ -1,13 +1,13 @@
-"use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import html2canvas from "html2canvas";
 import { motion } from "framer-motion";
+import { MyContext } from "../../MyContext";
 
 export default function ExportButton({ targetRef }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
+  const { state } = useContext(MyContext);
 
-  // close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -23,27 +23,20 @@ export default function ExportButton({ targetRef }) {
         alert("No target found!");
         return;
       }
-  
-      // Clean unsupported color functions (your existing code)
-      target.querySelectorAll('*').forEach(el => {
-        const style = getComputedStyle(el);
-        const props = ['color', 'background', 'backgroundColor', 'borderColor', 'boxShadow'];
-        props.forEach(prop => {
-          const val = style[prop];
-          if (val && (val.includes('oklab') || val.includes('oklch'))) {
-            if (prop === 'boxShadow') el.style.boxShadow = 'none';
-            else el.style[prop] = '#000';
-          }
-        });
-      });
-  
-      console.log("📸 Starting html2canvas...");
+
+      const prevBg = target.style.backgroundColor;
+      target.style.backgroundColor =
+        state.mode === "dark" ? "#0d0d0d" : "#ffffff";
+
       const canvas = await html2canvas(target, {
         backgroundColor: null,
         useCORS: true,
         scale: 2,
+        foreignObjectRendering: true,
       });
-  
+
+      target.style.backgroundColor = prevBg;
+
       if (action === "download") {
         const link = document.createElement("a");
         link.download = `export.${format}`;
@@ -54,29 +47,23 @@ export default function ExportButton({ targetRef }) {
           canvas.toBlob(async (blob) => {
             try {
               await navigator.clipboard.write([
-                new ClipboardItem({ [blob.type]: blob })
+                new ClipboardItem({ [blob.type]: blob }),
               ]);
               alert("Image copied to clipboard!");
             } catch {
               alert("Failed to copy image.");
             }
           });
-        } else {
-          alert("Copy format not supported");
         }
       } else if (action === "link") {
-        // Placeholder, you can customize this to upload image and get URL
         const dataUrl = canvas.toDataURL(`image/${format}`);
         await navigator.clipboard.writeText(dataUrl);
         alert("Image data URL copied to clipboard!");
       }
-  
     } catch (err) {
       console.error("🔥 Export failed:", err);
     }
   };
-  
-  
 
   return (
     <div ref={ref} className="max-sm:w-full relative inline-block">
@@ -130,7 +117,6 @@ export default function ExportButton({ targetRef }) {
   );
 }
 
-// --- Icons ---
 function ShareIcon() {
   return (
     <svg
