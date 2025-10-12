@@ -18,66 +18,64 @@ export default function ExportButton({ targetRef }) {
 
   const handleExport = async (format = "png", action = "download") => {
     try {
-      console.log("🟢 handleExport called", { format, action });
-      console.log("targetRef:", targetRef);
-      console.log("targetRef.current:", targetRef?.current);
-  
       const target = targetRef?.current;
       if (!target) {
-        alert("❌ No target element found to export!");
+        alert("No target found!");
         return;
       }
+  
+      // Clean unsupported color functions (your existing code)
+      target.querySelectorAll('*').forEach(el => {
+        const style = getComputedStyle(el);
+        const props = ['color', 'background', 'backgroundColor', 'borderColor', 'boxShadow'];
+        props.forEach(prop => {
+          const val = style[prop];
+          if (val && (val.includes('oklab') || val.includes('oklch'))) {
+            if (prop === 'boxShadow') el.style.boxShadow = 'none';
+            else el.style[prop] = '#000';
+          }
+        });
+      });
   
       console.log("📸 Starting html2canvas...");
       const canvas = await html2canvas(target, {
         backgroundColor: null,
         useCORS: true,
-        logging: true,
-        scale: 2, // higher quality
+        scale: 2,
       });
   
-      if (!canvas) {
-        console.error("❌ html2canvas returned null");
-        alert("❌ Failed to create canvas!");
-        return;
-      }
-  
-      console.log("✅ Canvas captured:", canvas);
-      const dataURL = canvas.toDataURL(`image/${format}`);
-      console.log("🖼️ Data URL created:", dataURL.slice(0, 60) + "...");
-  
       if (action === "download") {
-        const a = document.createElement("a");
-        a.href = dataURL;
-        a.download = `export.${format}`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        console.log("💾 Download triggered!");
-        alert("✅ Image downloaded!");
+        const link = document.createElement("a");
+        link.download = `export.${format}`;
+        link.href = canvas.toDataURL(`image/${format}`);
+        link.click();
+      } else if (action === "copy") {
+        if (format === "png") {
+          canvas.toBlob(async (blob) => {
+            try {
+              await navigator.clipboard.write([
+                new ClipboardItem({ [blob.type]: blob })
+              ]);
+              alert("Image copied to clipboard!");
+            } catch {
+              alert("Failed to copy image.");
+            }
+          });
+        } else {
+          alert("Copy format not supported");
+        }
+      } else if (action === "link") {
+        // Placeholder, you can customize this to upload image and get URL
+        const dataUrl = canvas.toDataURL(`image/${format}`);
+        await navigator.clipboard.writeText(dataUrl);
+        alert("Image data URL copied to clipboard!");
       }
   
-      if (action === "copy") {
-        const blob = await (await fetch(dataURL)).blob();
-        await navigator.clipboard.write([
-          new ClipboardItem({ [`image/${format}`]: blob }),
-        ]);
-        console.log("📋 Image copied to clipboard");
-        alert("✅ Image copied to clipboard!");
-      }
-  
-      if (action === "link") {
-        await navigator.clipboard.writeText(window.location.href);
-        console.log("🔗 Link copied to clipboard");
-        alert("🔗 Link copied to clipboard!");
-      }
-  
-      setOpen(false);
-    } catch (error) {
-      console.error("🔥 Export failed:", error);
-      alert("❌ Export failed. See console for details.");
+    } catch (err) {
+      console.error("🔥 Export failed:", err);
     }
   };
+  
   
 
   return (
