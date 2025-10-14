@@ -16,7 +16,6 @@ export default function ExportButton({ targetRef }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Replace any CSS style values containing 'oklab(' or 'oklch(' with fallback color
   const replaceUnsupportedColors = (element) => {
     const allElements = element.querySelectorAll("*");
     [...allElements, element].forEach((el) => {
@@ -41,7 +40,8 @@ export default function ExportButton({ targetRef }) {
       replaceUnsupportedColors(target);
 
       const prevBg = target.style.backgroundColor;
-      target.style.backgroundColor = state.mode === "dark" ? "#0d0d0d" : "#ffffff";
+      target.style.backgroundColor =
+        state.mode === "dark" ? "#0d0d0d" : "#ffffff";
 
       const canvas = await html2canvas(target, {
         useCORS: true,
@@ -57,7 +57,8 @@ export default function ExportButton({ targetRef }) {
         link.download = `export.${format}`;
         link.href = canvas.toDataURL(`image/${format}`);
         link.click();
-      } else if (action === "copy") {
+      }
+      else if (action === "copy") {
         if (format === "png") {
           canvas.toBlob(async (blob) => {
             try {
