@@ -23,7 +23,7 @@ export default function ExportButton({ targetRef }) {
       for (const prop of style) {
         const value = style.getPropertyValue(prop);
         if (value.includes("oklab(") || value.includes("oklch(")) {
-          el.style.setProperty(prop, "#000000");
+          el.style.setProperty(prop, "#000000b3");
         }
       }
     });

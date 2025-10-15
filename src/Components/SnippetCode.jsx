@@ -34,15 +34,15 @@ const SnippetCode = () => {
     <div className="flex justify-center">
       <div
         className={`max-sm:min-w-[16rem] min-w-[30rem] lg:min-w-[35rem] mx-auto border-2 rounded-xl shadow-2xl ${state.font} ${
-          state.mode === "dark" ? "bg-black/70 text-white" : "bg-white/50 text-black"
-        } border-gray-600/40`}
+          state.mode === "dark" ? "bg-[#000000b3] text-white" : "bg-white/50 text-black"
+        } border-[#4b556366]`}
       >
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
           <div className="flex gap-1.5">
-            <div className="rounded-full h-2 w-2 shadow bg-red-500" />
-            <div className="rounded-full h-2 w-2 shadow bg-yellow-500" />
-            <div className="rounded-full h-2 w-2 shadow bg-green-500" />
+            <div className="rounded-full h-2 w-2 shadow bg-[#ef4444]" />
+            <div className="rounded-full h-2 w-2 shadow bg-[#eab308]" />
+            <div className="rounded-full h-2 w-2 shadow bg-[#22c55e]" />
           </div>
 
           <div className="col-span-4 flex justify-center">
