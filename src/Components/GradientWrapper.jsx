@@ -13,7 +13,7 @@ const GradientWrapper = forwardRef(({ children }, ref) => {
     <div
       ref={ref}
       data-export-root="true"
-      className="max-w-[50rem] shadow-lg overflow-hidden"
+      className="max-w-[50rem] shadow-lg overflow-hidden my-5"
       style={{
         padding,
         ...backgroundStyle,
