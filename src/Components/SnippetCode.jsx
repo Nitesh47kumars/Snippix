@@ -59,8 +59,8 @@ const SnippetCode = () => {
   return (
     <div className="flex justify-center relative">
       <div
-        className={`max-sm:min-w-[16rem] min-w-[30rem] lg:min-w-[35rem] mx-auto border-2 rounded-xl shadow-2xl border-[#4b556366] ${
-          state.mode === "dark" ? "bg-[#000000b3]" : "bg-white/50"
+        className={`max-sm:min-w-[16rem] min-w-[30rem] lg:min-w-[35rem] mx-auto border-2 rounded-xl shadow-2xl ${
+          state.mode === "dark" ? "bg-[#000000b3] border-[#4b556366]" : "bg-white/30 border-[#ffffff22]"
         } ${state.font}`}
         style={{ fontFamily: fontFamily }} // ✅ ensure wrapper also gets correct font
       >
