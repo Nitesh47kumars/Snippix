@@ -18,7 +18,34 @@ export default function SnippetLanguage({ label }) {
     "PHP",
     "Swift",
     "Kotlin",
+    "C",
+    "C#",
+    "Scala",
+    "Perl",
+    "Dart",
+    "Elixir",
+    "Haskell",
+    "Objective-C",
+    "Shell",
+    "Lua",
+    "MATLAB",
+    "R",
+    "Groovy",
+    "Visual Basic",
+    "Assembly",
+    "COBOL",
+    "F#",
+    "Erlang",
+    "Julia",
+    "SQL",
+    "HTML",
+    "CSS",
+    "PowerShell",
+    "Ada",
+    "Fortran",
+    "Prolog"
   ];
+  
 
   const {state,dispatch} = useContext(MyContext);
 
@@ -50,10 +77,11 @@ export default function SnippetLanguage({ label }) {
 
       {open && (
         <motion.ul
-        initial={{y:10,opacity:0}}
-        animate={{y:0,opacity:1}}
-        transition={{duration:0.2,ease:'easeInOut'}}
-        className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-100">
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+        className="absolute bottom-full mb-1 w-full z-10 rounded-md bg-neutral-800 border border-neutral-700 shadow-lg text-sm text-white overflow-y-auto max-h-100 custom-scrollbar"
+      >      
           {languages.map((lang) => (
             <li
               key={lang}
