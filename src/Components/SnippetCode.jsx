@@ -31,7 +31,6 @@ const SnippetCode = () => {
     autoResize();
   }, [code, state.fontSize]);
 
-  // ✅ Define explicit font mapping (same as before)
   const fontFamilyMap = {
     fira: "'Fira Code', monospace",
     jetbrains: "'JetBrains Mono', monospace",
@@ -41,18 +40,17 @@ const SnippetCode = () => {
 
   const fontFamily = state.font ;
 
-  // ✅ Transparent theme that respects color highlighting and your font
   const transparentTheme = {
     ...oneDark,
     'pre[class*="language-"]': {
       ...oneDark['pre[class*="language-"]'],
       background: "transparent",
-      fontFamily, // <-- Force your font
+      fontFamily,
     },
     'code[class*="language-"]': {
       ...oneDark['code[class*="language-"]'],
       background: "transparent",
-      fontFamily, // <-- Force your font
+      fontFamily,
     },
   };
 
@@ -62,7 +60,7 @@ const SnippetCode = () => {
         className={`max-sm:min-w-[16rem] min-w-[30rem] lg:min-w-[35rem] mx-auto border-2 rounded-xl shadow-2xl ${
           state.mode === "dark" ? "bg-[#000000b3] border-[#4b556366]" : "bg-white/30 border-[#ffffff22]"
         } ${state.font}`}
-        style={{ fontFamily: fontFamily }} // ✅ ensure wrapper also gets correct font
+        style={{ fontFamily: fontFamily }}
       >
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
@@ -90,7 +88,7 @@ const SnippetCode = () => {
         {/* Code container */}
         <div
           style={{ fontSize: fontSize, fontFamily }}
-          className="relative px-4 pb-4 min-h-[100px] overflow-auto rounded-b-xl"
+          className="relative pb-4 min-h-[100px] overflow-auto rounded-b-xl"
         >
           {/* Highlighted code layer */}
           <SyntaxHighlighter
@@ -102,13 +100,14 @@ const SnippetCode = () => {
               left: 0,
               margin: 0,
               padding: "1rem",
+              lineHeight: "1.5rem",
               pointerEvents: "none",
               whiteSpace: "pre-wrap",
               wordWrap: "break-word",
               width: "100%",
               height: "100%",
               borderRadius: "0 0 0.75rem 0.75rem",
-              fontFamily, // ✅ force font again
+              fontFamily,
               fontSize,
               userSelect: "none",
               backgroundColor: "transparent",
@@ -128,7 +127,8 @@ const SnippetCode = () => {
             style={{
               fontSize,
               fontFamily,
-              lineHeight: "1.5rem",
+              lineHeight: "1.5rem", // 👈 same
+              padding: "1rem", 
               whiteSpace: "pre-wrap",
               wordWrap: "break-word",
               borderRadius: "0 0 0.75rem 0.75rem",
