@@ -4,10 +4,14 @@ import SampleCode from "./SampleCode.json";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+
+
 const SnippetCode = () => {
   const textareaRef = useRef(null);
   const { state } = useContext(MyContext);
   const fontSize = `${state.fontSize}px`;
+
+  const titleRef = useRef(null);
 
   const [code, setCode] = useState("");
 
@@ -86,17 +90,34 @@ const SnippetCode = () => {
           </div>
 
           <div className="col-span-4 flex justify-center">
-            <input
-              type="text"
-              spellCheck={false}
-              className={`bg-transparent text-center text-sm font-medium focus:outline-none 
-                ${
-                  state.mode === "dark"
-                    ? "text-white placeholder-white/60"
-                    : "text-black/70 placeholder-black/50"
-                }`}
-              placeholder="Untitled"
-            />
+
+          <div
+            ref={titleRef}
+            contentEditable
+            suppressContentEditableWarning
+            spellCheck={false}
+            className={`bg-transparent text-center text-sm font-medium focus:outline-none 
+              ${
+                state.mode === "dark"
+                  ? "text-white placeholder-white/60"
+                  : "text-black/70 placeholder-black/50"
+              }`}
+            style={{
+              lineHeight: "1.25rem",
+              padding: "2px 0",
+              minHeight: "1.25rem",
+            }}
+            onFocus={(e) => {
+              const range = document.createRange();
+              range.selectNodeContents(e.target);
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            }}
+          >
+            Untitled
+          </div>
+          
           </div>
         </header>
 
