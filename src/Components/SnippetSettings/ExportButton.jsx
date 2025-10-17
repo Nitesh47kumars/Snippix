@@ -36,35 +36,46 @@ export default function ExportButton({ targetRef }) {
         alert("No target found!");
         return;
       }
-
+  
       replaceUnsupportedColors(target);
-
+  
       const prevBg = target.style.backgroundColor;
-      target.style.backgroundColor =
-        state.mode === "dark" ? "#0d0d0d" : "#ffffff";
-
-      const canvas = await html2canvas(target, {
+      target.style.backgroundColor = state.mode === "dark" ? "#0d0d0d" : "#ffffff";
+  
+      const clone = target.cloneNode(true);
+      clone.style.overflow = "visible";
+      clone.style.height = "auto";
+  
+      clone.style.position = "fixed";
+      clone.style.top = "-9999px";
+      clone.style.left = "-9999px";
+      document.body.appendChild(clone);
+  
+      const canvas = await html2canvas(clone, {
         useCORS: true,
         scale: 2,
         backgroundColor: null,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: clone.scrollWidth,
+        windowHeight: clone.scrollHeight,
         foreignObjectRendering: false,
       });
-
+  
+      document.body.removeChild(clone); // clean up
+  
       target.style.backgroundColor = prevBg;
-
+  
       if (action === "download") {
         const link = document.createElement("a");
         link.download = `export.${format}`;
         link.href = canvas.toDataURL(`image/${format}`);
         link.click();
-      }
-      else if (action === "copy") {
+      } else if (action === "copy") {
         if (format === "png") {
           canvas.toBlob(async (blob) => {
             try {
-              await navigator.clipboard.write([
-                new ClipboardItem({ [blob.type]: blob }),
-              ]);
+              await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
               alert("Image copied to clipboard!");
             } catch {
               alert("Failed to copy image.");
@@ -80,6 +91,7 @@ export default function ExportButton({ targetRef }) {
       console.error("Export failed:", err);
     }
   };
+  
 
   return (
     <div ref={ref} className="max-sm:w-full relative inline-block">
