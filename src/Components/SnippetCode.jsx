@@ -32,13 +32,26 @@ const SnippetCode = () => {
   }, [code, state.fontSize]);
 
   const fontFamilyMap = {
-    fira: "'Fira Code', monospace",
-    jetbrains: "'JetBrains Mono', monospace",
-    roboto: "'Roboto Mono', monospace",
-    inter: "'Inter', sans-serif",
+    "font-Exo": "'Exo', sans-serif",
+    "font-libre": "'Libre Baskerville', serif",
+    "font-quicksand": "'Quicksand', sans-serif",
+    "font-dancing": "'Dancing Script', cursive",
+    "font-sharetech": "'Share Tech', sans-serif",
+    "font-montserrat": "'Montserrat', sans-serif",
+    "font-gravitas": "'Gravitas One', serif",
+    "font-robot": "'Roboto Condensed', sans-serif",
+    "font-instrument": "'Instrument Serif', serif",
+    "font-playwrite": "'Playwrite DE SAS', sans-serif",
+    "font-bebas": "'Bebas Neue', sans-serif",
+    "font-licorice": "'Licorice', cursive",
+    "font-playwrite_us": "'Playwrite US Modern', sans-serif",
+    "font-smooch": "'Smooch Sans', sans-serif",
+    "font-ole": "'Ole', cursive",
+    "font-space": "'Space Grotesk', sans-serif",
+    "font-pacifico": "'Pacifico', cursive",
   };
 
-  const fontFamily = state.font ;
+  const fontFamily = fontFamilyMap[state.font] || "'Fira Code', monospace";
 
   const transparentTheme = {
     ...oneDark,
@@ -58,9 +71,11 @@ const SnippetCode = () => {
     <div className="flex justify-center relative">
       <div
         className={`max-sm:min-w-[16rem] min-w-[30rem] lg:min-w-[35rem] mx-auto border-2 rounded-xl shadow-2xl ${
-          state.mode === "dark" ? "bg-[#000000b3] border-[#4b556366]" : "bg-white/30 border-[#ffffff22]"
+          state.mode === "dark"
+            ? "bg-[#000000b3] border-[#4b556366]"
+            : "bg-white/30 border-[#ffffff22]"
         } ${state.font}`}
-        style={{ fontFamily: fontFamily }}
+        style={{ fontFamily }}
       >
         {/* Header */}
         <header className="grid grid-cols-6 gap-3 items-center px-4 py-4">
@@ -85,12 +100,12 @@ const SnippetCode = () => {
           </div>
         </header>
 
-        {/* Code container */}
+        {/* 🧠 Code container */}
         <div
-          style={{ fontSize: fontSize, fontFamily }}
+          style={{ fontSize, fontFamily }}
           className="relative pb-4 min-h-[100px] overflow-auto rounded-b-xl"
         >
-          {/* Highlighted code layer */}
+          {/* Syntax Highlighted Layer */}
           <SyntaxHighlighter
             language={state.language.toLowerCase()}
             style={transparentTheme}
@@ -117,7 +132,7 @@ const SnippetCode = () => {
             {code || " "}
           </SyntaxHighlighter>
 
-          {/* Editable textarea */}
+          {/* Editable Transparent Textarea */}
           <textarea
             ref={textareaRef}
             value={code}
@@ -127,8 +142,8 @@ const SnippetCode = () => {
             style={{
               fontSize,
               fontFamily,
-              lineHeight: "1.5rem", // 👈 same
-              padding: "1rem", 
+              lineHeight: "1.5rem",
+              padding: "1rem",
               whiteSpace: "pre-wrap",
               wordWrap: "break-word",
               borderRadius: "0 0 0.75rem 0.75rem",
