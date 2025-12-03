@@ -1,16 +1,85 @@
-# React + Vite
+# Snippit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Snippit Screenshot](https://snippit-five.vercel.app)
 
-Currently, two official plugins are available:
+**Snippit** is a modern, interactive web application built with **React.js**, designed to showcase reusable components, smooth state management, and responsive UI patterns. It demonstrates clean architecture using React context, utility functions, and modular components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## React Compiler
+Check out the live project here: [Snippit](https://snippit-five.vercel.app/)
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend:** React.js  
+- **State Management:** React Context (`MyContext`)  
+- **Styling & UI:** TailwindCSS / Custom CSS  
+- **Icons & Utilities:** React Icons, Utility functions  
+- **Package Manager:** Bun  
+- **Version Control:** Git & GitHub  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🎯 Features
+
+- Modular and reusable React components  
+- Centralized state management using React Context  
+- Organized project structure for scalability  
+- Responsive design for multiple screen sizes  
+- Easy setup with Bun  
+
+## 📂 Project Structure
+
+```text
+Snippit/
+├─ public/           # Static files like index.html, favicon, images
+├─ src/
+│  ├─ components/    # Reusable UI components (Buttons, Layout, Cards, etc.)
+│  ├─ Utils/         # Helper functions and utilities
+│  │  └─ MyContext   # React Context for global state
+│  ├─ App.jsx        # Main App component
+│  └─ index.jsx      # React DOM render entry
+├─ package.json      # Project metadata & dependencies
+├─ .env              # Environment variables
+
+💻 Installation
+
+Since this project uses Bun, make sure you have it installed. Then follow these steps:
+
+# Clone the repository
+git clone https://github.com/Nitesh47kumars/Snippix.git
+
+# Navigate into the project folder
+cd Snippix
+
+# Install dependencies using Bun
+bun install
+
+# Start the development server
+bun dev
+
+
+The app will run on http://localhost:3000 (or the port Bun assigns).
+
+🤝 Contributing
+
+Contributions are welcome! You can submit pull requests or open issues. Please follow standard GitHub etiquette.
+
+📄 License
+
+This project is open-source and free to use.
+
+
+✅ **Fixes made:**  
+1. Wrapped the **project structure** in a code block (triple backticks + `text`) so it renders as a tree.  
+2. Fixed missing closing backticks in the installation code block.  
+3. Added proper headings for “Contributing” and “License.”  
+4. Cleaned indentation and spacing for readability on GitHub.  
+
+---
+
+If you want, I can also **add badges for React, Bun, Vercel, GitHub** at the top and a **“Built With” section** to make your README look like a polished professional portfolio repo.  
+
+Do you want me to do that next?
+
+
+
+├─ bun.lockb         # Bun lockfile
+└─ README.md         # Project documentation
