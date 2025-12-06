@@ -1,12 +1,10 @@
 # Snippit
 
-![Snippit Screenshot](https://snippit-five.vercel.app)
-
 **Snippit** is a modern, interactive web application built with **React.js**, designed to showcase reusable components, smooth state management, and responsive UI patterns. It demonstrates clean architecture using React context, utility functions, and modular components.
 
 ## 🚀 Live Demo
 
-Check out the live project here: [Snippit](https://snippit-five.vercel.app/)
+Snippit WebApp https://snippit-five.vercel.app/
 
 ## 🛠️ Tech Stack
 
